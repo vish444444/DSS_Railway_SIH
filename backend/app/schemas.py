@@ -174,7 +174,7 @@ class SectionResponse(SectionBase):
     electrified: bool
     signaling_system: Optional[str]
     active: bool
-    created_at: datetime
+    created_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True
@@ -207,7 +207,7 @@ class ControllerResponse(ControllerBase):
     auth_level: str
     section_responsibility: Optional[List[int]]
     active: bool
-    created_at: datetime
+    created_at: Optional[datetime] = None
 
     @field_validator('section_responsibility', mode='before')
     @classmethod
