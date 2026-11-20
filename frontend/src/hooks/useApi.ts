@@ -87,11 +87,11 @@ export const useApi = <T = any,>(
 
 // Specific hooks for common API calls
 export const useTrains = () => {
-  return useApi(apiService.getTrains);
+  return useApi(() => apiService.getTrains());
 };
 
 export const useSections = () => {
-  return useApi(apiService.getSections);
+  return useApi(() => apiService.getSections());
 };
 
 export const useSectionStatuses = () => {
@@ -103,7 +103,7 @@ export const useConflicts = (hours: number = 24) => {
 };
 
 export const usePerformanceMetrics = () => {
-  return useApi(apiService.getPerformanceMetrics);
+  return useApi(() => apiService.getPerformanceMetrics());
 };
 
 export default useApi;

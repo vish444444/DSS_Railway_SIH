@@ -247,7 +247,7 @@ const Trains: React.FC = () => {
                           {train.priority}
                         </div>
                         <div className="ml-2 flex-shrink-0 flex">
-                          {[...Array(train.priority)].map((_, i) => (
+                          {[...Array(Math.max(0, Math.min(10, train.priority || 0)))].map((_, i) => (
                             <svg
                               key={i}
                               className="h-3 w-3 text-yellow-400"
@@ -266,7 +266,7 @@ const Trains: React.FC = () => {
                         <div
                           className="bg-blue-600 h-1.5 rounded-full"
                           style={{
-                            width: `${(train.current_load / train.capacity) * 100}%`,
+                            width: `${train.capacity ? Math.min(100, ((train.current_load || 0) / train.capacity) * 100) : 0}%`,
                           }}
                         ></div>
                       </div>

@@ -267,7 +267,7 @@ const Dashboard: React.FC = () => {
                         {conflict.description}
                       </p>
                       <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                        {new Date(conflict.detection_time).toLocaleString()}
+                        {conflict.detection_time ? new Date(conflict.detection_time).toLocaleString() : 'Recent'}
                       </p>
                     </div>
                   </div>
@@ -290,7 +290,7 @@ const Dashboard: React.FC = () => {
             <div className="space-y-4">
               {['EXPRESS', 'LOCAL', 'FREIGHT', 'MAINTENANCE'].map((type) => {
                 const count = getTrainTypeCount(type);
-                const percentage = trains ? (count / trains.length) * 100 : 0;
+                const percentage = trains && trains.length > 0 ? (count / trains.length) * 100 : 0;
                 return (
                   <div key={type}>
                     <div className="flex items-center justify-between mb-1">
@@ -338,7 +338,7 @@ const Dashboard: React.FC = () => {
               <div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Cache Hit Rate</p>
                 <p className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  {(metrics.cache_hit_rate * 100).toFixed(1)}%
+                  {(((metrics.cache_hit_rate ?? 0) * 100)).toFixed(1)}%
                 </p>
               </div>
               <div>

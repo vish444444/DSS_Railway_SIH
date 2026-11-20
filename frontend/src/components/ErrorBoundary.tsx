@@ -53,11 +53,11 @@ class ErrorBoundary extends Component<Props, State> {
                 We're sorry, but something unexpected happened.
               </p>
               {this.state.error && (
-                <details className="mt-4 text-left">
+                <details open className="mt-4 text-left">
                   <summary className="cursor-pointer text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
                     Error details
                   </summary>
-                  <pre className="mt-2 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs text-red-600 dark:text-red-400 overflow-auto">
+                  <pre className="mt-2 p-4 bg-gray-100 dark:bg-gray-900 rounded text-xs text-red-600 dark:text-red-400 overflow-auto whitespace-pre-wrap">
                     {this.state.error.toString()}
                   </pre>
                 </details>

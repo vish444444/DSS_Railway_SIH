@@ -15,6 +15,21 @@ class ApiService {
       timeout: 30000,
     });
 
+    // Bind methods to preserve `this` context
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+    this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.getTrains = this.getTrains.bind(this);
+    this.getTrain = this.getTrain.bind(this);
+    this.updateTrainPosition = this.updateTrainPosition.bind(this);
+    this.getSections = this.getSections.bind(this);
+    this.getSectionStatus = this.getSectionStatus.bind(this);
+    this.getConflicts = this.getConflicts.bind(this);
+    this.getConflictStatus = this.getConflictStatus.bind(this);
+    this.manualConflictDetection = this.manualConflictDetection.bind(this);
+    this.getPerformanceMetrics = this.getPerformanceMetrics.bind(this);
+    this.getHealthStatus = this.getHealthStatus.bind(this);
+
     // Request interceptor to add auth token
     this.client.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
