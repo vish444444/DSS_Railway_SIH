@@ -9,7 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks, 
 from sqlalchemy.orm import Session
 from sqlalchemy import and_, desc
 from ..db import get_session
-from ..models import Train, Position, Section
+from ..models import Train, Position, Section, Conflict, Decision
 from ..schemas import (
     PositionUpdate, BulkPositionUpdate, PositionResponse, 
     APIResponse, ErrorResponse, PositionBroadcast

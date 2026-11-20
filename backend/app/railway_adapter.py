@@ -11,11 +11,18 @@ from enum import Enum
 import asyncio
 
 # Import the AI optimization module
-from railway_optimization import (
-    Train as AITrain, TrainType as AITrainType, RailwaySection as AISection,
-    Conflict as AIConflict, OptimizationEngine, Solution as AISolution,
-    Action as AIAction, ActionType as AIActionType
-)
+try:
+    from .railway_optimization import (
+        Train as AITrain, TrainType as AITrainType, RailwaySection as AISection,
+        Conflict as AIConflict, OptimizationEngine, Solution as AISolution,
+        Action as AIAction, ActionType as AIActionType
+    )
+except ImportError:
+    from railway_optimization import (
+        Train as AITrain, TrainType as AITrainType, RailwaySection as AISection,
+        Conflict as AIConflict, OptimizationEngine, Solution as AISolution,
+        Action as AIAction, ActionType as AIActionType
+    )
 
 # Configure logging
 logger = logging.getLogger(__name__)
