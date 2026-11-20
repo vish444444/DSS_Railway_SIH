@@ -460,6 +460,7 @@ async def get_section_occupancy_history(
         )
 
 
+@router.get("", response_model=List[SectionResponse])
 @router.get("/", response_model=List[SectionResponse])
 async def list_sections(
     section_type: Optional[str] = Query(None, description="Filter by section type"),

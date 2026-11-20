@@ -17,7 +17,7 @@ const Conflicts: React.FC = () => {
     const matchesFilter = filter === 'ALL' || conflict.severity === filter || conflict.status === filter;
     const matchesSearch =
       !searchTerm ||
-      conflict.conflict_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (conflict.conflict_type || (conflict as any).type || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
       conflict.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
@@ -340,7 +340,7 @@ const Conflicts: React.FC = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-2">
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                          {conflict.conflict_type.replace('_', ' ')}
+                          {(conflict.conflict_type || (conflict as any).type || 'UNKNOWN').replace(/_/g, ' ')}
                         </h3>
                         <span
                           className={`px-2 py-1 text-xs font-medium rounded-full ${getSeverityColor(

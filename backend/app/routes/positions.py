@@ -82,7 +82,8 @@ async def list_trains(
                     "destination_section_id": train.destination_section_id,
                     "current_section_id": train.current_section_id,
                     "operational_status": str(train.operational_status) if train.operational_status else "UNKNOWN",
-                    "priority_level": train.priority_level,
+                    "priority_level": getattr(train, 'priority', 5),
+                    "priority": getattr(train, 'priority', 5),
                     "capacity": train.capacity,
                     "created_at": train.created_at.isoformat() if train.created_at else None
                 }

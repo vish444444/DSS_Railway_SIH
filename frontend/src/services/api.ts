@@ -114,7 +114,15 @@ class ApiService {
       params: { hours }
     });
     // Extract conflicts array from wrapped response
-    return response.data?.data?.conflicts || response.data?.conflicts || response.data || [];
+    const rawConflicts = response.data?.data?.conflicts || response.data?.conflicts || response.data || [];
+    if (!Array.isArray(rawConflicts)) return [];
+    return rawConflicts.map((c: any) => ({
+      ...c,
+      conflict_type: (c.conflict_type || c.type || 'UNKNOWN').toUpperCase(),
+      severity: (c.severity || 'LOW').toUpperCase(),
+      description: c.description || 'Conflict detected',
+      detection_time: c.detection_time || c.detected_at || new Date().toISOString()
+    }));
   }
 
   async getConflictStatus() {

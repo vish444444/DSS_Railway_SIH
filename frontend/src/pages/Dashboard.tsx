@@ -53,15 +53,15 @@ const Dashboard: React.FC = () => {
   }
 
   const getTrainTypeCount = (type: string) => {
-    return trains?.filter((t: Train) => t.type === type).length || 0;
+    return trains?.filter((t: Train) => t.type?.toUpperCase() === type.toUpperCase()).length || 0;
   };
 
   const getActiveTrainsCount = () => {
-    return trains?.filter((t: Train) => t.operational_status === 'ACTIVE').length || 0;
+    return trains?.filter((t: Train) => t.operational_status?.toUpperCase() === 'ACTIVE').length || 0;
   };
 
   const getCriticalConflictsCount = () => {
-    return conflicts?.filter((c: Conflict) => (c.severity === 'CRITICAL' || c.severity === 'HIGH') && !c.resolution_time).length || 0;
+    return conflicts?.filter((c: Conflict) => (c.severity?.toUpperCase() === 'CRITICAL' || c.severity?.toUpperCase() === 'HIGH') && !c.resolution_time).length || 0;
   };
 
   const getOccupiedSectionsCount = () => {
@@ -261,7 +261,7 @@ const Dashboard: React.FC = () => {
                     </div>
                     <div className="ml-3 flex-1">
                       <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        {conflict.conflict_type.replace('_', ' ')}
+                        {(conflict.conflict_type || (conflict as any).type || 'UNKNOWN').replace(/_/g, ' ')}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                         {conflict.description}
